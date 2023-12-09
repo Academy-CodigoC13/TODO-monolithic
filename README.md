@@ -4,6 +4,8 @@ Esta es una aplicación de lista de tareas simple implementada como una
 aplicación monolítica. La aplicación utiliza un stack tecnológico que incluye
 HTML, CSS, JavaScript (Node.js), y SQLite para el almacenamiento de datos.
 
+![Alt text](image.png)
+
 ## Estructura del Proyecto
 
 El proyecto está organizado de la siguiente manera:

@@ -12,7 +12,7 @@ const db = new sqlite3.Database(":memory:");
 // Crear tabla de tareas en la base de datos
 db.serialize(() => {
   db.run(
-    "CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT)"
+    "CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, completed BOOLEAN DEFAULT 0)"
   );
 });
 
@@ -67,6 +67,27 @@ app.delete("/tasks/:id", (req, res) => {
       res.status(500).json({ error: "Error al eliminar la tarea." });
     } else {
       res.json({ message: "Tarea eliminada exitosamente." });
+    }
+  });
+});
+
+// Endpoint para marcar una tarea como completada
+app.put("/tasks/:id/complete", (req, res) => {
+  const taskId = req.params.id;
+
+  if (!taskId) {
+    return res.status(400).json({ error: "ID de tarea no proporcionado." });
+  }
+
+  // Marcar la tarea como completada en la base de datos
+  db.run("UPDATE tasks SET completed = 1 WHERE id = ?", taskId, (err) => {
+    if (err) {
+      console.error(err);
+      res
+        .status(500)
+        .json({ error: "Error al marcar la tarea como completada." });
+    } else {
+      res.json({ message: "Tarea marcada como completada exitosamente." });
     }
   });
 });

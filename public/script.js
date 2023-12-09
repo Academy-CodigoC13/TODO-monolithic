@@ -22,11 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Delegar eventos de eliminación a los botones "Eliminar"
+  // Delegar eventos de eliminación y completado a los botones correspondientes
   taskListContainer.addEventListener("click", (event) => {
+    console.log(event.target.dataset);
     if (event.target.classList.contains("delete-task-btn")) {
       const taskId = event.target.dataset.taskId;
       deleteTask(taskId);
+    } else if (event.target.classList.contains("complete-task-btn")) {
+      const taskId = event.target.dataset.taskId;
+      markAsCompleted(taskId);
     }
   });
 
@@ -72,6 +76,19 @@ document.addEventListener("DOMContentLoaded", () => {
     loadTasks();
   }
 
+  // Función para marcar una tarea como completada
+  async function markAsCompleted(id) {
+    const response = await fetch(`/tasks/${id}/completed`, {
+      method: "PUT",
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    // Recargar la lista de tareas después de marcar una tarea como completada
+    loadTasks();
+  }
+
   // Función para crear un elemento de tarea HTML
   function createTaskElement(task) {
     const taskElement = document.createElement("div");
@@ -82,6 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <button class="delete-task-btn" data-task-id="${
         task.id
       }">Eliminar</button>
+      <button class="complete-task-btn" data-task-id="${
+        task.id
+      }">Marcar como completado</button>
     `;
     return taskElement;
   }

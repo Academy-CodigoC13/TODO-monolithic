@@ -6,6 +6,8 @@ HTML, CSS, JavaScript (Node.js), y SQLite para el almacenamiento de datos.
 
 ![Alt text](image.png)
 
+![Alt text](image-1.png)
+
 ## Estructura del Proyecto
 
 El proyecto está organizado de la siguiente manera:
@@ -52,6 +54,11 @@ El proyecto está organizado de la siguiente manera:
 - Eliminación de Tareas:
 
   - Cada tarea tiene un botón "Eliminar" para eliminarla de la lista.
+
+- Completar Tareas:
+
+  - Cada tarea tiene un botón "Marcar como completado" para marcarla como
+    completada.
 
 # Tecnologías Utilizadas
 

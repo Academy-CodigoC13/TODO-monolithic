@@ -39,7 +39,7 @@ El proyecto está organizado de la siguiente manera:
    npm start
    ```
 
-   la aplicación se ejecutará en [http://localhost:3000](http://localhost:3000).
+   la aplicación se ejecutará en [http://localhost:3001](http://localhost:3001).
 
 # Funcionalidades
 
